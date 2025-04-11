@@ -40,5 +40,10 @@ jobs:
       - name: Launch Web Service
         run: docker compose up -d
 
+      - name: Synchronize
+        run: |
+          chmod +x ./wait-for-webserver.sh
+          ./wait-for-webserver.sh localhost 8080
+
       - name: Run Selenium Tests
         run: cd selenium && mvn test
